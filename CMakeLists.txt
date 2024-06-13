@@ -6,6 +6,11 @@ project(bcrypt)
 
 set(CMAKE_CXX_STANDARD 11)
 
+# Disable -Wformat-truncation
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+  add_compile_options(-Wno-format-truncation)
+endif()
+
 add_library(bcrypt src/bcrypt.cpp src/blowfish.cpp)
 target_include_directories(bcrypt PRIVATE src/)
 target_include_directories(bcrypt PUBLIC include/)
